@@ -10,12 +10,11 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-private let reuseIdentifier = "myProfileCollectionViewCell"
-
 class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet var collectionView: UICollectionView!
-    
+
+    private let reuseIdentifier = "myProfileCollectionViewCell"
     var curUserUID: String?
     var userCollections: [AnimalData]?
     
@@ -23,6 +22,8 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         super.viewDidLoad()
         
         checkIfUserIsLoggedIn()
+        collectionView.dataSource = self
+        collectionView.delegate = self
         userCollections = [AnimalData]()
         fetchUserCollections()
     }
@@ -42,7 +43,7 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         let collection = userCollections![indexPath.row]
     
         cell.displayContent(imageURL: collection.imageURL, name: collection.key, score: collection.score)
-        
+
         return cell
     }
     
@@ -65,6 +66,10 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
                 let collectionImageURL = collection?.value(forKey: "imageURL") as? String
                 let collectionScore = collection?.value(forKey: "score") as? Int
                 self.userCollections?.append(AnimalData(key: collectionKey!, imageName: collectionImageName!, imageURL: collectionImageURL!, score: collectionScore!))
+            }
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
             }
         }) { (error) in
             print(error.localizedDescription)

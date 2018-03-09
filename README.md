@@ -1,1 +1,4 @@
 # AnimalCollector
+```
+pod install
+```
