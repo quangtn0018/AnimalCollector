@@ -17,6 +17,8 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     private let reuseIdentifier = "myProfileCollectionViewCell"
     var curUserUID: String?
     var userCollections: [AnimalData]?
+    var collectionsRefToRemove: DatabaseReference?
+    var userCollectionsKeysToIndex: [String: Int]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +27,14 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         collectionView.dataSource = self
         collectionView.delegate = self
         userCollections = [AnimalData]()
+        userCollectionsKeysToIndex = [String: Int]()
         fetchUserCollections()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        collectionsRefToRemove?.removeAllObservers()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -52,20 +56,35 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         let usersRef = ref.child("users")
         let curUserRef = usersRef.child(curUserUID!)
         let collectionsRef = curUserRef.child("collections")
+        collectionsRefToRemove = collectionsRef
         
-        collectionsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        collectionsRef.observe(DataEventType.value, with: { (snapshot) in
             let collections = snapshot.value as? NSDictionary
             if (collections == nil) {
                 return
             }
             
             for (_, value) in collections! {
+                
                 let collection = value as? NSDictionary
                 let collectionKey = collection?.value(forKey: "key") as? String
                 let collectionImageName = collection?.value(forKey: "imageName") as? String
                 let collectionImageURL = collection?.value(forKey: "imageURL") as? String
                 let collectionScore = collection?.value(forKey: "score") as? Int
-                self.userCollections?.append(AnimalData(key: collectionKey!, imageName: collectionImageName!, imageURL: collectionImageURL!, score: collectionScore!))
+                
+                // TODO
+                if self.userCollectionsKeysToIndex![collectionKey!] == nil {
+                    self.userCollectionsKeysToIndex![collectionKey!] = self.userCollections?.count
+                    self.userCollections?.append(AnimalData(key: collectionKey!, imageName: collectionImageName!, imageURL: collectionImageURL!, score: collectionScore!))
+                }
+                else {
+                    let index: Int = self.userCollectionsKeysToIndex![collectionKey!]!
+                    // replace old image with new one
+                    if (self.userCollections![index]).imageURL != collectionImageURL {
+                        self.userCollections![index].imageURL = collectionImageURL!
+                    }
+                }
+                
             }
             
             DispatchQueue.main.async {

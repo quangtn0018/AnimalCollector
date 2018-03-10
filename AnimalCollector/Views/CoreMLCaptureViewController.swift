@@ -20,6 +20,7 @@ class CoreMLCaptureViewController: UIViewController, UINavigationControllerDeleg
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var classifier: UILabel!
     @IBOutlet weak var saveImageButton: UIButton!
+    @IBOutlet weak var errorMessage: UILabel!
     
     var model: Inceptionv3!
     
@@ -133,14 +134,17 @@ class CoreMLCaptureViewController: UIViewController, UINavigationControllerDeleg
         saveImageButton.isHidden = true
         
         let animalsScore = AnimalScore()
-        let predictionsArr = predictionLabel.components(separatedBy: ",")
+        let predictionsArr = predictionLabel.components(separatedBy: ", ")
         let filteredPredictions = predictionsArr.filter {
-            animalsScore.animals[$0] != nil
+            let key = $0.trimmingCharacters(in: .whitespaces)
+            return animalsScore.animals[key] != nil
         }
         
         if (filteredPredictions.isEmpty) {
-            classifier.text = "This is not a valid animal. Please select or capture another image of an animal"
+            errorMessage.isHidden = false
+            errorMessage.text = "This is not a valid animal. Please select or capture another image of an animal"
         } else {
+            errorMessage.isHidden = true
             let key = filteredPredictions[0]
             
             animalDataToSave?.key = key
@@ -185,6 +189,8 @@ class CoreMLCaptureViewController: UIViewController, UINavigationControllerDeleg
         imageView.image = nil
         classifier.text = "Select or Capture an image of an animal"
         saveImageButton.isHidden = true
+        errorMessage.text = ""
+        errorMessage.isHidden = true
     }
 }
 
