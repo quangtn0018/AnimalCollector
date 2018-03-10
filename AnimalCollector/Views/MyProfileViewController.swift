@@ -13,7 +13,8 @@ import FirebaseDatabase
 class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet var collectionView: UICollectionView!
-
+    @IBOutlet weak var totalScore: UILabel!
+    
     private let reuseIdentifier = "myProfileCollectionViewCell"
     var curUserUID: String?
     var userCollections: [AnimalData]?
@@ -24,13 +25,11 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         super.viewDidLoad()
         
         checkIfUserIsLoggedIn()
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        userCollections = [AnimalData]()
-        userCollectionsKeysToIndex = [String: Int]()
+        initView()
+        fetchUserScore()
         fetchUserCollections()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -51,12 +50,35 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         return cell
     }
     
+    func initView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        userCollections = [AnimalData]()
+        userCollectionsKeysToIndex = [String: Int]()
+    }
+    
+    func fetchUserScore() {
+        let ref: DatabaseReference = Database.database().reference()
+        let usersRef = ref.child("users")
+        let curUserRef = usersRef.child(curUserUID!)
+        let scoreRef = curUserRef.child("score")
+
+        
+        scoreRef.observe(DataEventType.value, with: { (snapshot) in
+            if let score = snapshot.value as? Int {
+                self.totalScore.text = "Total score: \(score)"
+            }
+        })
+        
+    }
+    
     func fetchUserCollections() {
         let ref: DatabaseReference = Database.database().reference()
         let usersRef = ref.child("users")
         let curUserRef = usersRef.child(curUserUID!)
         let collectionsRef = curUserRef.child("collections")
         collectionsRefToRemove = collectionsRef
+        
         
         collectionsRef.observe(DataEventType.value, with: { (snapshot) in
             let collections = snapshot.value as? NSDictionary
@@ -72,14 +94,14 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
                 let collectionImageURL = collection?.value(forKey: "imageURL") as? String
                 let collectionScore = collection?.value(forKey: "score") as? Int
                 
-                // TODO
+                // add to userCollections if key doesnt exist
                 if self.userCollectionsKeysToIndex![collectionKey!] == nil {
                     self.userCollectionsKeysToIndex![collectionKey!] = self.userCollections?.count
                     self.userCollections?.append(AnimalData(key: collectionKey!, imageName: collectionImageName!, imageURL: collectionImageURL!, score: collectionScore!))
                 }
                 else {
                     let index: Int = self.userCollectionsKeysToIndex![collectionKey!]!
-                    // replace old image with new one
+                    // update old image with new one if key exists
                     if (self.userCollections![index]).imageURL != collectionImageURL {
                         self.userCollections![index].imageURL = collectionImageURL!
                     }
@@ -87,6 +109,8 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
                 
             }
             
+            // reload collection view data after usersCollection has been set
+            // need to do this because firebase db runs async
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -125,3 +149,4 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     */
 
 }
+

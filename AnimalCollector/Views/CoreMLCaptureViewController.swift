@@ -26,15 +26,14 @@ class CoreMLCaptureViewController: UIViewController, UINavigationControllerDeleg
     
     var animalDataToSave: AnimalData?
     var curUserUID: String?
+    var sv: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         checkIfUserIsLoggedIn()
-        
-        animalDataToSave = AnimalData(key: "", imageName: "", imageURL: "", score: 0)
-        
+        initView()
         resetViewProperties()
     }
     
@@ -45,6 +44,10 @@ class CoreMLCaptureViewController: UIViewController, UINavigationControllerDeleg
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func initView() {
+        animalDataToSave = AnimalData(key: "", imageName: "", imageURL: "", score: 0)
     }
     
     @IBAction func camera(_ sender: Any) {
@@ -70,6 +73,7 @@ class CoreMLCaptureViewController: UIViewController, UINavigationControllerDeleg
     }
     
     @IBAction func saveImageButtonDidTouch(_ sender: Any) {
+        sv = UIViewController.displaySpinner(onView: self.view)
         
         // save image to firebase
         let storage = Storage.storage()
@@ -83,8 +87,7 @@ class CoreMLCaptureViewController: UIViewController, UINavigationControllerDeleg
         uploadImageMetadata.contentType = "image/jpeg"
         
         if let uploadData = UIImagePNGRepresentation(imageToSave!) {
-            // TODO might want to change variable name to _ since we're not using it
-            let uploadTask = imageToSaveRef.putData(uploadData, metadata: uploadImageMetadata) { (metadata, error) in
+            imageToSaveRef.putData(uploadData, metadata: uploadImageMetadata) { (metadata, error) in
                 guard let metadata = metadata else {
                     print(error!)
                     return
@@ -96,8 +99,6 @@ class CoreMLCaptureViewController: UIViewController, UINavigationControllerDeleg
                 }
             }
         }
-        
-        prepareForUserAccountViewSegue()
     }
     
     private func saveAnimalDataToUserAccount() {
@@ -106,12 +107,18 @@ class CoreMLCaptureViewController: UIViewController, UINavigationControllerDeleg
         let curUserRef = usersRef.child(curUserUID!)
         let scoreRef = curUserRef.child("score")
         
+        
         scoreRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let score = value?["score"] as? Int ?? 0
-            let newScore = score + (self.animalDataToSave?.score)!
-//            let newValue = ["score": newScore]
-            scoreRef.setValue(newScore)
+            if let score = snapshot.value as? Int {
+                let newScore = score + (self.animalDataToSave?.score)!
+                scoreRef.setValue(newScore)
+                
+                UIViewController.removeSpinner(spinner: self.sv!)
+                
+                DispatchQueue.main.async {
+                    self.prepareForUserAccountViewSegue()
+                }
+            }
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -243,3 +250,25 @@ extension CoreMLCaptureViewController: UIImagePickerControllerDelegate {
     }
 }
 
+extension UIViewController {
+    class func displaySpinner(onView : UIView) -> UIView {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        return spinnerView
+    }
+    
+    class func removeSpinner(spinner :UIView) {
+        DispatchQueue.main.async {
+            spinner.removeFromSuperview()
+        }
+    }
+}
