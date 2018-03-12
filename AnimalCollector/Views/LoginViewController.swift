@@ -12,7 +12,7 @@ import Firebase
 class LoginViewController: UIViewController {
     
     // MARK: Constants
-    let showUserAccount = "showUserAccount"
+    private let showUserAccount = "showUserAccount"
     
     // MARK: Outlets
     @IBOutlet weak var userEmail: UITextField!

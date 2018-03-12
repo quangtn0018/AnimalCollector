@@ -14,18 +14,24 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet weak var totalScore: UILabel!
+    @IBOutlet weak var navBar: UINavigationItem!
     
     private let reuseIdentifier = "myProfileCollectionViewCell"
     var curUserUID: String?
     var userCollections: [AnimalData]?
     var collectionsRefToRemove: DatabaseReference?
     var userCollectionsKeysToIndex: [String: Int]?
+    var sv: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         checkIfUserIsLoggedIn()
         initView()
+        
+        sv = UIViewController.displaySpinner(onView: self.view)
+        
+        fetchUserEmail()
         fetchUserScore()
         fetchUserCollections()
     }
@@ -57,19 +63,32 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         userCollectionsKeysToIndex = [String: Int]()
     }
     
+    func fetchUserEmail() {
+        let ref: DatabaseReference = Database.database().reference()
+        let usersRef = ref.child("users")
+        let curUserRef = usersRef.child(curUserUID!)
+        let emailRef = curUserRef.child("email")
+        
+        emailRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let email = snapshot.value as? String {
+                self.navBar.title = email
+            }
+            
+            UIViewController.removeSpinner(spinner: self.sv!)
+        })
+    }
+    
     func fetchUserScore() {
         let ref: DatabaseReference = Database.database().reference()
         let usersRef = ref.child("users")
         let curUserRef = usersRef.child(curUserUID!)
         let scoreRef = curUserRef.child("score")
 
-        
         scoreRef.observe(DataEventType.value, with: { (snapshot) in
             if let score = snapshot.value as? Int {
                 self.totalScore.text = "Total score: \(score)"
             }
         })
-        
     }
     
     func fetchUserCollections() {
@@ -119,6 +138,14 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         }
     }
     
+    @IBAction func signOutDidTouch(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+    }
+    
     func checkIfUserIsLoggedIn() {
         if let currentUser = Auth.auth().currentUser {
             self.curUserUID = currentUser.uid
@@ -148,5 +175,28 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     */
 
+}
+
+extension UIViewController {
+    class func displaySpinner(onView : UIView) -> UIView {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        return spinnerView
+    }
+    
+    class func removeSpinner(spinner :UIView) {
+        DispatchQueue.main.async {
+            spinner.removeFromSuperview()
+        }
+    }
 }
 
