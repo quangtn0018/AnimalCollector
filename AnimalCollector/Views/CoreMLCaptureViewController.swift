@@ -107,7 +107,6 @@ class CoreMLCaptureViewController: UIViewController, UINavigationControllerDeleg
         let curUserRef = usersRef.child(curUserUID!)
         let scoreRef = curUserRef.child("score")
         
-        
         scoreRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let score = snapshot.value as? Int {
                 let newScore = score + (self.animalDataToSave?.score)!
@@ -126,7 +125,6 @@ class CoreMLCaptureViewController: UIViewController, UINavigationControllerDeleg
         let collectionsRef = curUserRef.child("collections")
         let animalRef = collectionsRef.child((animalDataToSave?.key)!)
         
-        // TODO testing
         let values = [
             "key": self.animalDataToSave?.key as Any,
             "imageName": self.animalDataToSave?.imageName as Any,

@@ -18,6 +18,6 @@ class MyProfileCollectionViewCell: UICollectionViewCell {
     func displayContent(imageURL: String, name: String, score: Int) {
         animalImage.sd_setImage(with: URL(string: imageURL), completed: nil)
         animalName.text = name
-        animalScore.text = "\(score)"
+        animalScore.text = "Score: \(score)"
     }
 }
