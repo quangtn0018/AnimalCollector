@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,22 +22,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Classifier" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="44X-lV-OJs">
-                                <rect key="frame" x="16" y="390" width="343" height="66"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="jY0-rR-qNp"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kr5-PT-EsM">
                                 <rect key="frame" x="38" y="72" width="299" height="299"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Kr5-PT-EsM" secondAttribute="height" multiplier="1:1" id="nMP-KB-GU7"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="A00-BK-vRS">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Error Message" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="A00-BK-vRS">
                                 <rect key="frame" x="16" y="464" width="343" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="r9c-xb-SqF"/>
@@ -58,17 +48,26 @@
                                     <action selector="saveImageButtonDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ntK-Jo-5lh"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Classifier" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="44X-lV-OJs">
+                                <rect key="frame" x="16" y="390" width="343" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="jY0-rR-qNp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Tvy-sS-D3I" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4FS-WZ-Z6v"/>
                             <constraint firstItem="Kr5-PT-EsM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="56" id="Jt3-D8-h4T"/>
-                            <constraint firstItem="44X-lV-OJs" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="U4T-Rm-Phg"/>
+                            <constraint firstItem="A00-BK-vRS" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="UjF-om-qgg"/>
                             <constraint firstItem="Kr5-PT-EsM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cEB-KP-t4u"/>
+                            <constraint firstItem="44X-lV-OJs" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="f7L-ad-UQy"/>
                             <constraint firstItem="Tvy-sS-D3I" firstAttribute="top" secondItem="A00-BK-vRS" secondAttribute="bottom" constant="18" id="rmO-Uj-QIE"/>
                             <constraint firstItem="44X-lV-OJs" firstAttribute="top" secondItem="Kr5-PT-EsM" secondAttribute="bottom" constant="36" id="u2T-3L-8mC"/>
                             <constraint firstItem="A00-BK-vRS" firstAttribute="top" secondItem="44X-lV-OJs" secondAttribute="bottom" constant="-3" id="u4w-4u-btJ"/>
-                            <constraint firstItem="44X-lV-OJs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="xWk-Gw-Ebi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Core ML" id="GMb-rR-dZK">
@@ -93,7 +92,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="578" y="1709"/>
+            <point key="canvasLocation" x="576.79999999999995" y="1708.6956521739132"/>
         </scene>
         <!--Leaderboards-->
         <scene sceneID="IGD-hy-bQv">

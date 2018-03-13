@@ -138,6 +138,7 @@ class CoreMLCaptureViewController: UIViewController, UINavigationControllerDeleg
     func findAnimals(predictionLabel: String) {
         saveImageButton.isHidden = true
         
+        // TODO get EACH individual word separated by blankspace
         let animalsScore = AnimalScore()
         let predictionsArr = predictionLabel.components(separatedBy: ", ")
         let filteredPredictions = predictionsArr.filter {
