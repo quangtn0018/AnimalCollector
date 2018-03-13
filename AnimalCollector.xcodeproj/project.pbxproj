@@ -13,6 +13,8 @@
 		E3619D262050AC1200EC153B /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3619D252050AC1200EC153B /* MyProfileViewController.swift */; };
 		E3619D282050D2AD00EC153B /* MyProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3619D272050D2AD00EC153B /* MyProfileCollectionViewCell.swift */; };
 		E3619D2A2051AD6D00EC153B /* AnimalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3619D292051AD6D00EC153B /* AnimalData.swift */; };
+		E3ADE79A205746DC00DB1322 /* LeaderboardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ADE799205746DC00DB1322 /* LeaderboardsViewController.swift */; };
+		E3ADE79C20574A4400DB1322 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ADE79B20574A4400DB1322 /* User.swift */; };
 		E3AF5F9320280AD700ACE5B0 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3AF5F9220280AD600ACE5B0 /* Inceptionv3.mlmodel */; };
 		E3AF5F962031FE1A00ACE5B0 /* AnimalScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AF5F952031FE1A00ACE5B0 /* AnimalScore.swift */; };
 		F44543791EF0461F0024AFAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44543781EF0461F0024AFAC /* AppDelegate.swift */; };
@@ -31,6 +33,8 @@
 		E3619D252050AC1200EC153B /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		E3619D272050D2AD00EC153B /* MyProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		E3619D292051AD6D00EC153B /* AnimalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalData.swift; sourceTree = "<group>"; };
+		E3ADE799205746DC00DB1322 /* LeaderboardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardsViewController.swift; sourceTree = "<group>"; };
+		E3ADE79B20574A4400DB1322 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E3AF5F9220280AD600ACE5B0 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		E3AF5F952031FE1A00ACE5B0 /* AnimalScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalScore.swift; sourceTree = "<group>"; };
 		F44543751EF0461F0024AFAC /* AnimalCollector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimalCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +82,7 @@
 				F445437A1EF0461F0024AFAC /* CoreMLCaptureViewController.swift */,
 				E3619D252050AC1200EC153B /* MyProfileViewController.swift */,
 				E3619D272050D2AD00EC153B /* MyProfileCollectionViewCell.swift */,
+				E3ADE799205746DC00DB1322 /* LeaderboardsViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -87,6 +92,7 @@
 			children = (
 				E3AF5F952031FE1A00ACE5B0 /* AnimalScore.swift */,
 				E3619D292051AD6D00EC153B /* AnimalData.swift */,
+				E3ADE79B20574A4400DB1322 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -266,9 +272,11 @@
 				E3AF5F962031FE1A00ACE5B0 /* AnimalScore.swift in Sources */,
 				E310CA71201E649200B1A7D3 /* LoginViewController.swift in Sources */,
 				E3AF5F9320280AD700ACE5B0 /* Inceptionv3.mlmodel in Sources */,
+				E3ADE79A205746DC00DB1322 /* LeaderboardsViewController.swift in Sources */,
 				F445437B1EF0461F0024AFAC /* CoreMLCaptureViewController.swift in Sources */,
 				F44543791EF0461F0024AFAC /* AppDelegate.swift in Sources */,
 				E3619D282050D2AD00EC153B /* MyProfileCollectionViewCell.swift in Sources */,
+				E3ADE79C20574A4400DB1322 /* User.swift in Sources */,
 				E3619D2A2051AD6D00EC153B /* AnimalData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,7 +6,7 @@
 //  Copyright © 2018 AppCoda. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class AnimalData {
     var key: String
