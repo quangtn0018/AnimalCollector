@@ -106,16 +106,16 @@ class MessagesViewController: UITableViewController {
                     message.timestamp = dictionary["timestamp"] as? TimeInterval
                     message.toId = dictionary["toId"] as? String
                     
-                    if let toId = message.toId {
-                        self.messagesDictionary![toId] = message
-                        if let values = self.messagesDictionary?.values {
-                            self.messages = Array(values)
-                            self.messages?.sort {
-                                $0.timestamp! > $1.timestamp!
-                            }
+                    let chatPartnerId = message.chatPartnerId()
+                    
+                    self.messagesDictionary![chatPartnerId] = message
+                    if let values = self.messagesDictionary?.values {
+                        self.messages = Array(values)
+                        self.messages?.sort {
+                            $0.timestamp! > $1.timestamp!
                         }
                     }
-                    
+                
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
