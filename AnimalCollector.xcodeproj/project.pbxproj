@@ -10,9 +10,14 @@
 		A1FE07F4296CCD3D057BCFC5 /* Pods_AnimalCollector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B554C988F8039DC22985626F /* Pods_AnimalCollector.framework */; };
 		E304252E201DB2E6009C9E74 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E304252D201DB2E6009C9E74 /* GoogleService-Info.plist */; };
 		E310CA71201E649200B1A7D3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E310CA70201E649200B1A7D3 /* LoginViewController.swift */; };
+		E3243ED620589148005857A5 /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3243ED520589148005857A5 /* ChatLogViewController.swift */; };
+		E3243ED82059B1BB005857A5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3243ED72059B1BB005857A5 /* Message.swift */; };
+		E3243EDA205A4D8A005857A5 /* ChatMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3243ED9205A4D8A005857A5 /* ChatMessageViewCell.swift */; };
 		E3619D262050AC1200EC153B /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3619D252050AC1200EC153B /* MyProfileViewController.swift */; };
 		E3619D282050D2AD00EC153B /* MyProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3619D272050D2AD00EC153B /* MyProfileCollectionViewCell.swift */; };
 		E3619D2A2051AD6D00EC153B /* AnimalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3619D292051AD6D00EC153B /* AnimalData.swift */; };
+		E3A4C6962057B03300CE9AA4 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A4C6952057B03300CE9AA4 /* MessagesViewController.swift */; };
+		E3A4C6982057B32700CE9AA4 /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A4C6972057B32700CE9AA4 /* NewMessageViewController.swift */; };
 		E3ADE79A205746DC00DB1322 /* LeaderboardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ADE799205746DC00DB1322 /* LeaderboardsViewController.swift */; };
 		E3ADE79C20574A4400DB1322 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ADE79B20574A4400DB1322 /* User.swift */; };
 		E3AF5F9320280AD700ACE5B0 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E3AF5F9220280AD600ACE5B0 /* Inceptionv3.mlmodel */; };
@@ -30,9 +35,14 @@
 		B554C988F8039DC22985626F /* Pods_AnimalCollector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnimalCollector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E304252D201DB2E6009C9E74 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E310CA70201E649200B1A7D3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E3243ED520589148005857A5 /* ChatLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
+		E3243ED72059B1BB005857A5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		E3243ED9205A4D8A005857A5 /* ChatMessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageViewCell.swift; sourceTree = "<group>"; };
 		E3619D252050AC1200EC153B /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		E3619D272050D2AD00EC153B /* MyProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		E3619D292051AD6D00EC153B /* AnimalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalData.swift; sourceTree = "<group>"; };
+		E3A4C6952057B03300CE9AA4 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		E3A4C6972057B32700CE9AA4 /* NewMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
 		E3ADE799205746DC00DB1322 /* LeaderboardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardsViewController.swift; sourceTree = "<group>"; };
 		E3ADE79B20574A4400DB1322 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E3AF5F9220280AD600ACE5B0 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
@@ -83,6 +93,10 @@
 				E3619D252050AC1200EC153B /* MyProfileViewController.swift */,
 				E3619D272050D2AD00EC153B /* MyProfileCollectionViewCell.swift */,
 				E3ADE799205746DC00DB1322 /* LeaderboardsViewController.swift */,
+				E3A4C6952057B03300CE9AA4 /* MessagesViewController.swift */,
+				E3A4C6972057B32700CE9AA4 /* NewMessageViewController.swift */,
+				E3243ED520589148005857A5 /* ChatLogViewController.swift */,
+				E3243ED9205A4D8A005857A5 /* ChatMessageViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -93,6 +107,7 @@
 				E3AF5F952031FE1A00ACE5B0 /* AnimalScore.swift */,
 				E3619D292051AD6D00EC153B /* AnimalData.swift */,
 				E3ADE79B20574A4400DB1322 /* User.swift */,
+				E3243ED72059B1BB005857A5 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -268,16 +283,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3A4C6962057B03300CE9AA4 /* MessagesViewController.swift in Sources */,
 				E3619D262050AC1200EC153B /* MyProfileViewController.swift in Sources */,
 				E3AF5F962031FE1A00ACE5B0 /* AnimalScore.swift in Sources */,
 				E310CA71201E649200B1A7D3 /* LoginViewController.swift in Sources */,
 				E3AF5F9320280AD700ACE5B0 /* Inceptionv3.mlmodel in Sources */,
+				E3243ED620589148005857A5 /* ChatLogViewController.swift in Sources */,
 				E3ADE79A205746DC00DB1322 /* LeaderboardsViewController.swift in Sources */,
 				F445437B1EF0461F0024AFAC /* CoreMLCaptureViewController.swift in Sources */,
+				E3A4C6982057B32700CE9AA4 /* NewMessageViewController.swift in Sources */,
 				F44543791EF0461F0024AFAC /* AppDelegate.swift in Sources */,
 				E3619D282050D2AD00EC153B /* MyProfileCollectionViewCell.swift in Sources */,
 				E3ADE79C20574A4400DB1322 /* User.swift in Sources */,
 				E3619D2A2051AD6D00EC153B /* AnimalData.swift in Sources */,
+				E3243ED82059B1BB005857A5 /* Message.swift in Sources */,
+				E3243EDA205A4D8A005857A5 /* ChatMessageViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

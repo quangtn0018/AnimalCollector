@@ -18,9 +18,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var userEmail: UITextField!
     @IBOutlet weak var userPassword: UITextField!
     @IBOutlet weak var errorMessage: UILabel!
-    
-    // MARK: Properties
-    
+    // TODO add username UITextfield ??
     
     // MARK: Override Functions
     override func viewDidLoad() {
@@ -39,16 +37,6 @@ class LoginViewController: UIViewController {
         // dismiss keyboard when view is touched
         userEmail.resignFirstResponder()
         userPassword.resignFirstResponder()
-    }
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if segue.identifier == "showUserAccount" {
-            
-        }
     }
     
     // MARK: Actions
