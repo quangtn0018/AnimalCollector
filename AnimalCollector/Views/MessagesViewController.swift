@@ -11,6 +11,8 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class MessagesViewController: UITableViewController {
+    // TODO add spinner
+    // TODO add logic for not loading spinner when there arent any messages
     
     private let reuseIdentifier = "messagesUserCell"
     
@@ -26,7 +28,7 @@ class MessagesViewController: UITableViewController {
         checkIfUserIsLoggedIn()
         initView()
         
-        tableView.register(MessagesUserCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UserCell.self, forCellReuseIdentifier: reuseIdentifier)
 //        sv = UIViewController.displaySpinner(onView: self.view)
 //        observeMessages()
         observeUserMessages()
@@ -50,7 +52,7 @@ class MessagesViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MessagesUserCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! UserCell
         
         let message = messages![indexPath.row]
         cell.message = message
@@ -183,53 +185,55 @@ class MessagesViewController: UITableViewController {
     }
 }
 
-class MessagesUserCell: UITableViewCell {
-    var message: Message? {
-        didSet {
-            if let id = message?.chatPartnerId() {
-                let ref: DatabaseReference = Database.database().reference().child("users").child(id)
-                
-                ref.observeSingleEvent(of: .value) { (snapshot) in
-                    if let dictionary = snapshot.value as? [String: AnyObject] {
-                        self.textLabel?.text = dictionary["email"] as? String
-                    }
-                }
-            }
-            
-            detailTextLabel?.text = message?.text
-            
-            if let seconds = message?.timestamp {
-                let timestampDate = NSDate(timeIntervalSince1970: TimeInterval(seconds))
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "hh:mm:ss a"
-                timeLabel.text = dateFormatter.string(from: timestampDate as Date)
-            }
-        }
-    }
-    
-    let timeLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = UIColor.darkGray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-        
-        addSubview(timeLabel)
-        
-        timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 18).isActive = true
-        timeLabel.centerYAnchor.constraint(equalTo: (textLabel?.centerYAnchor)!).isActive = true
-        timeLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        timeLabel.heightAnchor.constraint(equalTo: (textLabel?.heightAnchor)!).isActive = true
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
+// TODO remove
+//class MessagesUserCell: UITableViewCell {
+//    var message: Message? {
+//        didSet {
+//            if let id = message?.chatPartnerId() {
+//                let ref: DatabaseReference = Database.database().reference().child("users").child(id)
+//
+//                ref.observeSingleEvent(of: .value) { (snapshot) in
+//                    if let dictionary = snapshot.value as? [String: AnyObject] {
+//                        self.textLabel?.text = dictionary["email"] as? String
+//                    }
+//                }
+//            }
+//
+//            detailTextLabel?.text = message?.text
+//
+//            if let seconds = message?.timestamp {
+//                let timestampDate = NSDate(timeIntervalSince1970: TimeInterval(seconds))
+//
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.dateFormat = "hh:mm:ss a"
+//                timeLabel.text = dateFormatter.string(from: timestampDate as Date)
+//            }
+//        }
+//    }
+//
+//    let timeLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = UIFont.systemFont(ofSize: 12)
+//        label.textColor = UIColor.darkGray
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//
+//        return label
+//    }()
+//
+//    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+//        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+//
+//        addSubview(timeLabel)
+//
+//        timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+//        timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 18).isActive = true
+//        timeLabel.centerYAnchor.constraint(equalTo: (textLabel?.centerYAnchor)!).isActive = true
+//        timeLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+//        timeLabel.heightAnchor.constraint(equalTo: (textLabel?.heightAnchor)!).isActive = true
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//}
+
