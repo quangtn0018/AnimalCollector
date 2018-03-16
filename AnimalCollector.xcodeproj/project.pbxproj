@@ -13,6 +13,7 @@
 		E3243ED620589148005857A5 /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3243ED520589148005857A5 /* ChatLogViewController.swift */; };
 		E3243ED82059B1BB005857A5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3243ED72059B1BB005857A5 /* Message.swift */; };
 		E3243EDA205A4D8A005857A5 /* ChatMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3243ED9205A4D8A005857A5 /* ChatMessageViewCell.swift */; };
+		E3243EDC205B93E2005857A5 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3243EDB205B93E2005857A5 /* UserCell.swift */; };
 		E3619D262050AC1200EC153B /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3619D252050AC1200EC153B /* MyProfileViewController.swift */; };
 		E3619D282050D2AD00EC153B /* MyProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3619D272050D2AD00EC153B /* MyProfileCollectionViewCell.swift */; };
 		E3619D2A2051AD6D00EC153B /* AnimalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3619D292051AD6D00EC153B /* AnimalData.swift */; };
@@ -38,6 +39,7 @@
 		E3243ED520589148005857A5 /* ChatLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
 		E3243ED72059B1BB005857A5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		E3243ED9205A4D8A005857A5 /* ChatMessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageViewCell.swift; sourceTree = "<group>"; };
+		E3243EDB205B93E2005857A5 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		E3619D252050AC1200EC153B /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		E3619D272050D2AD00EC153B /* MyProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		E3619D292051AD6D00EC153B /* AnimalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalData.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				E3A4C6972057B32700CE9AA4 /* NewMessageViewController.swift */,
 				E3243ED520589148005857A5 /* ChatLogViewController.swift */,
 				E3243ED9205A4D8A005857A5 /* ChatMessageViewCell.swift */,
+				E3243EDB205B93E2005857A5 /* UserCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				E3243ED620589148005857A5 /* ChatLogViewController.swift in Sources */,
 				E3ADE79A205746DC00DB1322 /* LeaderboardsViewController.swift in Sources */,
 				F445437B1EF0461F0024AFAC /* CoreMLCaptureViewController.swift in Sources */,
+				E3243EDC205B93E2005857A5 /* UserCell.swift in Sources */,
 				E3A4C6982057B32700CE9AA4 /* NewMessageViewController.swift in Sources */,
 				F44543791EF0461F0024AFAC /* AppDelegate.swift in Sources */,
 				E3619D282050D2AD00EC153B /* MyProfileCollectionViewCell.swift in Sources */,

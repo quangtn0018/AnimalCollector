@@ -24,7 +24,7 @@ class LeaderboardsViewController: UITableViewController {
         checkIfUserIsLoggedIn()
         initView()
         
-        tableView.register(LeaderboardsUserCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UserCell.self, forCellReuseIdentifier: reuseIdentifier)
         sv = UIViewController.displaySpinner(onView: self.view)
         fetchUsers()
     }
@@ -95,15 +95,5 @@ class LeaderboardsViewController: UITableViewController {
         
         let loginViewController = LoginViewController()
         present(loginViewController, animated: true, completion: nil)
-    }
-}
-
-class LeaderboardsUserCell: UITableViewCell {
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

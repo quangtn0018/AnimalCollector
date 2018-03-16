@@ -12,4 +12,6 @@ class User: NSObject {
     var id: String?
     var name: String?
     var score: Int?
+    // TODO implement add user profile image during login view
+    var profileImage = UIImage(named: "profileImagePlaceholder")
 }

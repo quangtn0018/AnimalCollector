@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController {
+    // TODO implement UIImage to let user set a profile image
+    // TODO add username inputfield
     
     // MARK: Constants
     private let showUserAccount = "showUserAccount"

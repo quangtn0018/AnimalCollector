@@ -23,7 +23,7 @@ class NewMessageViewController: UITableViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(handleCancel))
         initView()
         
-        tableView.register(LeaderboardsUserCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UserCell.self, forCellReuseIdentifier: reuseIdentifier)
         sv = UIViewController.displaySpinner(onView: self.view)
         
         self.curUserUID = Auth.auth().currentUser?.uid
@@ -41,10 +41,11 @@ class NewMessageViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! UserCell
         let user = users![indexPath.row]
         
         cell.textLabel?.text = user.name
+        cell.profileImageView.image = user.profileImage
         
         return cell
     }
