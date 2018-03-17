@@ -14,14 +14,12 @@ class LeaderboardsViewController: UITableViewController {
 
     private let reuseIdentifier = "leaderboardsUserCell"
     
-    var curUserUID: String?
     var users: [User]?
     var sv: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        checkIfUserIsLoggedIn()
         initView()
         
         tableView.register(UserCell.self, forCellReuseIdentifier: reuseIdentifier)
@@ -76,24 +74,5 @@ class LeaderboardsViewController: UITableViewController {
             
             UIViewController.removeSpinner(spinner: self.sv!)
         }
-    }
-    
-    func checkIfUserIsLoggedIn() {
-        if let currentUser = Auth.auth().currentUser {
-            self.curUserUID = currentUser.uid
-        } else {
-            perform(#selector(handleLogout), with: nil, afterDelay: 0)
-        }
-    }
-    
-    @objc func handleLogout() {
-        do {
-            try Auth.auth().signOut()
-        } catch let logoutError {
-            print(logoutError)
-        }
-        
-        let loginViewController = LoginViewController()
-        present(loginViewController, animated: true, completion: nil)
     }
 }

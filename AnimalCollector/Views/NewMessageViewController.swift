@@ -13,7 +13,6 @@ import FirebaseDatabase
 class NewMessageViewController: UITableViewController {
     private let reuseIdentifier = "newMessageCell"
     
-    var curUserUID: String?
     var users: [User]?
     var sv: UIView?
     
@@ -26,7 +25,6 @@ class NewMessageViewController: UITableViewController {
         tableView.register(UserCell.self, forCellReuseIdentifier: reuseIdentifier)
         sv = UIViewController.displaySpinner(onView: self.view)
         
-        self.curUserUID = Auth.auth().currentUser?.uid
         fetchUsers()
     }
     
@@ -70,10 +68,11 @@ class NewMessageViewController: UITableViewController {
     func fetchUsers() {
         let ref: DatabaseReference = Database.database().reference()
         let usersRef = ref.child("users")
+        let uid = Auth.auth().currentUser?.uid
         
         usersRef.observe(DataEventType .childAdded) { (snapshot) in
             
-            if snapshot.key == self.curUserUID {
+            if snapshot.key == uid {
                 return
             }
             
