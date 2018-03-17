@@ -6,6 +6,7 @@
 //  Copyright © 2017 AppCoda. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import CoreML
 import FirebaseStorage
@@ -39,11 +40,6 @@ class CoreMLCaptureViewController: UIViewController, UINavigationControllerDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         model = Inceptionv3()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func initView() {
@@ -138,12 +134,11 @@ class CoreMLCaptureViewController: UIViewController, UINavigationControllerDeleg
     func findAnimals(predictionLabel: String) {
         saveImageButton.isHidden = true
         
-        // TODO get EACH individual word separated by blankspace
         let animalsScore = AnimalScore()
-        let predictionsArr = predictionLabel.components(separatedBy: ", ")
-        let filteredPredictions = predictionsArr.filter {
-            let key = $0.trimmingCharacters(in: .whitespaces)
-            return animalsScore.animals[key] != nil
+        let animalScoreKeys = Array(animalsScore.animals.keys)
+        
+        let filteredPredictions = animalScoreKeys.filter {
+            return predictionLabel.contains($0)
         }
         
         if (filteredPredictions.isEmpty) {
