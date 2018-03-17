@@ -14,6 +14,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class CoreMLCaptureViewController: UIViewController, UINavigationControllerDelegate {
+    // TODO fix layout and make it look nicer
     
     // MARK: Constants
     private let showUserAccount = "showUserAccount"
