@@ -77,6 +77,10 @@ class MessagesViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 72
+    }
+    
     func showChatControllerForUser(user: User) {
         let chatLogController = ChatLogViewController(collectionViewLayout: UICollectionViewFlowLayout())
         chatLogController.user = user
