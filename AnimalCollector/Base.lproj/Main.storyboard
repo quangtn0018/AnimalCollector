@@ -29,7 +29,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Error Message" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="A00-BK-vRS">
-                                <rect key="frame" x="16" y="464" width="343" height="66"/>
+                                <rect key="frame" x="16" y="453" width="343" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="r9c-xb-SqF"/>
                                 </constraints>
@@ -37,8 +37,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Classifier" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="44X-lV-OJs">
+                                <rect key="frame" x="16" y="379" width="343" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="jY0-rR-qNp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tvy-sS-D3I">
-                                <rect key="frame" x="137" y="552" width="100" height="30"/>
+                                <rect key="frame" x="137" y="527" width="100" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.70296744479999995" blue="0.66434386779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="APd-Ks-71D"/>
@@ -48,15 +57,6 @@
                                     <action selector="saveImageButtonDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ntK-Jo-5lh"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Classifier" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="44X-lV-OJs">
-                                <rect key="frame" x="16" y="390" width="343" height="66"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="jY0-rR-qNp"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -386,6 +386,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="2KR-KX-VrL"/>
+        <segue reference="zPO-yl-KYt"/>
     </inferredMetricsTieBreakers>
 </document>

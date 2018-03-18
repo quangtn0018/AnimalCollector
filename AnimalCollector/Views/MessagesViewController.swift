@@ -28,7 +28,6 @@ class MessagesViewController: UITableViewController {
         
         tableView.register(UserCell.self, forCellReuseIdentifier: reuseIdentifier)
 //        sv = UIViewController.displaySpinner(onView: self.view)
-//        observeMessages()
         observeUserMessages()
     }
     
@@ -99,46 +98,22 @@ class MessagesViewController: UITableViewController {
         let userRef = userMessagesRef.child(uid!)
         
         userRef.observe(.childAdded) { (snapshot) in
-            let messageId = snapshot.key
-            let messagesRef = Database.database().reference().child("messages").child(messageId)
+            let userId = snapshot.key
             
-            messagesRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                if let dictionary = snapshot.value as? [String: AnyObject] {
-                    let message = Message()
-                    
-                    message.fromId = dictionary["fromId"] as? String
-                    message.text = dictionary["text"] as? String
-                    message.timestamp = dictionary["timestamp"] as? TimeInterval
-                    message.toId = dictionary["toId"] as? String
-                    
-                    let chatPartnerId = message.chatPartnerId()
-                    
-                    self.messagesDictionary![chatPartnerId] = message
-                    if let values = self.messagesDictionary?.values {
-                        self.messages = Array(values)
-                        self.messages?.sort {
-                            $0.timestamp! > $1.timestamp!
-                        }
-                    }
+            Database.database().reference().child("user-messages").child(uid!).child(userId).observe(.childAdded, with: { (snapshot) in
                 
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                }
-                
-                
+                let messageId = snapshot.key
+                self.fetchMessageWithMessageId(messageId: messageId)
             })
             
 //            UIViewController.removeSpinner(spinner: self.sv!)
         }
     }
     
-    // TODO remove?
-    func observeMessages() {
-        let ref: DatabaseReference = Database.database().reference()
-        let messagesRef = ref.child("messages")
-
-        messagesRef.observe(.childAdded) { (snapshot) in
+    private func fetchMessageWithMessageId(messageId: String) {
+        let messagesRef = Database.database().reference().child("messages").child(messageId)
+        
+        messagesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let message = Message()
                 
@@ -146,23 +121,27 @@ class MessagesViewController: UITableViewController {
                 message.text = dictionary["text"] as? String
                 message.timestamp = dictionary["timestamp"] as? TimeInterval
                 message.toId = dictionary["toId"] as? String
-
-                if let toId = message.toId {
-                    self.messagesDictionary![toId] = message
-                    if let values = self.messagesDictionary?.values {
-                            self.messages = Array(values)
-                        self.messages?.sort {
-                            $0.timestamp! > $1.timestamp!
-                        }
-                    }
-                }
                 
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                let chatPartnerId = message.chatPartnerId()
+                
+                self.messagesDictionary![chatPartnerId] = message
+                
+                self.attemptReloadOfTable()
+                
             }
-
-//            UIViewController.removeSpinner(spinner: self.sv!)
+        })
+    }
+    
+    private func attemptReloadOfTable() {
+        if let values = self.messagesDictionary?.values {
+            self.messages = Array(values)
+            self.messages?.sort {
+                $0.timestamp! > $1.timestamp!
+            }
+        }
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
 }

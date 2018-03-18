@@ -27,8 +27,10 @@ class AnimalScore {
             "turtle": Animal(score: 11),
             "lemur": Animal(score: 11),
             "cat": Animal(score: 12),
+            // TODO add more animals and their scores
+            
             // TODO for test remove later
-//            "jackfruit": Animal(score: 100),
+            "jackfruit": Animal(score: 100),
             "capitulum": Animal(score: 101),
             "cliff": Animal(score: 102),
             "dyke": Animal(score: 103),
