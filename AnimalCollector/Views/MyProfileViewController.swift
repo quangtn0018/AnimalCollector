@@ -19,7 +19,6 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
     private let reuseIdentifier = "myProfileCollectionViewCell"
     var curUserUID: String?
     var userCollections: [AnimalData]?
-    var collectionsRefToRemove: DatabaseReference?
     var userCollectionsKeysToIndex: [String: Int]?
     var sv: UIView?
     
@@ -34,12 +33,6 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         fetchUserEmail()
         fetchUserScore()
         fetchUserCollections()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        collectionsRefToRemove?.removeAllObservers()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -96,8 +89,6 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
         let usersRef = ref.child("users")
         let curUserRef = usersRef.child(curUserUID!)
         let collectionsRef = curUserRef.child("collections")
-        collectionsRefToRemove = collectionsRef
-        
         
         collectionsRef.observe(DataEventType.value, with: { (snapshot) in
             let collections = snapshot.value as? NSDictionary
@@ -106,7 +97,6 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
             }
             
             for (_, value) in collections! {
-                
                 let collection = value as? NSDictionary
                 let collectionKey = collection?.value(forKey: "key") as? String
                 let collectionImageName = collection?.value(forKey: "imageName") as? String
@@ -125,7 +115,6 @@ class MyProfileViewController: UIViewController, UICollectionViewDelegate, UICol
                         self.userCollections![index].imageURL = collectionImageURL!
                     }
                 }
-                
             }
             
             // reload collection view data after usersCollection has been set
