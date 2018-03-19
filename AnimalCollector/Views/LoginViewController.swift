@@ -20,7 +20,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var userEmail: UITextField!
     @IBOutlet weak var userPassword: UITextField!
     @IBOutlet weak var errorMessage: UILabel!
-    // TODO add username UITextfield ??
     
     // MARK: Override Functions
     override func viewDidLoad() {

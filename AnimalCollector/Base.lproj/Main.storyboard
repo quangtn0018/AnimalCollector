@@ -117,7 +117,7 @@
                             <outlet property="delegate" destination="2hP-7V-1g5" id="TbJ-av-Pme"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Leaderboards" id="Hi3-sV-9bN"/>
+                    <tabBarItem key="tabBarItem" title="Leaderboards" image="icons8-scorecard-30" id="Hi3-sV-9bN"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qu0-Sz-jhO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -127,7 +127,7 @@
         <scene sceneID="aEz-SK-Aak">
             <objects>
                 <navigationController id="lmN-eL-9pR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Profile" id="LqS-Gl-bEi" userLabel="My Profile"/>
+                    <tabBarItem key="tabBarItem" title="My Profile" image="icons8-customer-30" id="LqS-Gl-bEi" userLabel="My Profile"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="k1W-bt-1Tb">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -260,7 +260,7 @@
         <scene sceneID="ffv-ux-Kco">
             <objects>
                 <navigationController id="KUr-2x-Z4T" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Messenger" id="CIF-sH-yen"/>
+                    <tabBarItem key="tabBarItem" title="Messenger" image="icons8-chat-30" id="CIF-sH-yen"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OC2-CU-r7V">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -369,7 +369,7 @@
         <scene sceneID="rTx-xT-aku">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jlx-eY-Zrw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Capture" id="wKF-fL-geA" userLabel="Capture"/>
+                    <tabBarItem key="tabBarItem" title="Capture" image="icons8-camera-30" id="wKF-fL-geA" userLabel="Capture"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="m0I-yw-OYy">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -385,7 +385,14 @@
             <point key="canvasLocation" x="-239" y="1709"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icons8-camera-30" width="30" height="30"/>
+        <image name="icons8-chat-30" width="30" height="30"/>
+        <image name="icons8-customer-30" width="30" height="30"/>
+        <image name="icons8-scorecard-30" width="30" height="30"/>
+    </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Ye5-Wa-NeP"/>
         <segue reference="zPO-yl-KYt"/>
     </inferredMetricsTieBreakers>
 </document>
